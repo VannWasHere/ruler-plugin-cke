@@ -10,7 +10,8 @@
             v-if="editor && config"
             :modelValue="config.initialData"
             :editor="editor"
-            :config="config" />
+            :config="config"
+            @ready="onEditorReady" />
         </div>
       </div>
     </div>
@@ -114,7 +115,7 @@ import "ckeditor5/ckeditor5.css";
 import "ckeditor5-premium-features/ckeditor5-premium-features.css";
 import Ruler from "../ckeditor5-ruler/src/ruler";
 
-const LICENSE_KEY = import.meta.env.VITE_LICENSEKEY;
+const LICENSE_KEY = import.meta.env.VITE_CKEDITOR_LICENSE_KEY;
 
 /**
  * Please update the following values with your tokens.
@@ -260,6 +261,7 @@ const config = computed(() => {
       TextTransformation,
       TodoList,
       Underline,
+      Ruler, // Add Ruler plugin
     ],
     exportPdf: {
       stylesheets: [
@@ -485,41 +487,30 @@ const config = computed(() => {
 });
 
 onMounted(() => {
-  let inlineEditorResizeObserver;
-  const domElement = document.querySelector("#editor");
   isLayoutReady.value = true;
-
-  InlineEditor.create(domElement, {
-    licenseKey: import.meta.env.VITE_LICENSEKEY,
-    plugins: [Ruler],
-  })
-    .then((editor) => {
-      const rulerPluginStatus = editor.plugins.has("Ruler");
-      console.log("is Ruler Exist: ", rulerPluginStatus);
-
-      const rulerPlugin = editor.plugins.get("Ruler");
-      const toolbarBalloonPanelContent = editor.ui.view.panel.content;
-      const domRoot = editor.editing.view.getDomRoot();
-
-      // Make sure the inline editor toolbar has the same width as the editing root for the ruler
-      // to be aligned properly.
-      inlineEditorResizeObserver = new ResizeObserver(
-        editor.editing.view.getDomRoot(),
-        () => {
-          editor.ui.view.panel.element.style.width =
-            new Rect(domRoot).width + "px";
-        }
-      );
-
-      // Add the ruler view to the panel that hosts the inline editor toolbar.
-      toolbarBalloonPanelContent.add(
-        rulerPlugin.rulerView,
-        toolbarBalloonPanelContent.length
-      );
-    })
-    .catch((err) => {
-      console.error(err.stack);
-      inlineEditorResizeObserver.destroy();
-    });
 });
+
+// Execute additional code when the editor is ready
+function onEditorReady(editor) {
+  let inlineEditorResizeObserver;
+
+  const rulerPlugin = editor.plugins.get("Ruler");
+  const toolbarBalloonPanelContent = editor.ui.view.panel.content;
+  const domRoot = editor.editing.view.getDomRoot();
+
+  // Make sure the inline editor toolbar has the same width as the editing root for the ruler
+  // to be aligned properly.
+  inlineEditorResizeObserver = new ResizeObserver(
+    editor.editing.view.getDomRoot(),
+    () => {
+      editor.ui.view.panel.element.style.width = new Rect(domRoot).width + "px";
+    }
+  );
+
+  // Add the ruler view to the panel that hosts the inline editor toolbar.
+  toolbarBalloonPanelContent.add(
+    rulerPlugin.rulerView,
+    toolbarBalloonPanelContent.length
+  );
+}
 </script>
