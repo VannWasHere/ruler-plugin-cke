@@ -1,0 +1,119 @@
+/*
+ * Copyright (c) 2003-2024, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+:root {
+	--ck-ruler-height: 14px;
+	--ck-ruler-thumb-width: 12px;
+	--ck-ruler-thumb-height: 8px;
+	--ck-ruler-thumb-color: var(--ck-color-base-active);
+	--ck-ruler-thumb-color-hover: hsl(218.1, 100%, 50%);
+	--ck-ruler-color-background: var(--ck-color-base-background);
+	--ck-ruler-color-marker-small: #ccc;
+	--ck-ruler-color-marker-big: #999;
+}
+
+.ck.ck-ruler {
+	background:
+		linear-gradient(90deg, transparent 0, transparent 99px, var(--ck-ruler-color-marker-big) 99.1px, var(--ck-ruler-color-marker-big) 100px),
+		linear-gradient(90deg, transparent 0, transparent 9px, var(--ck-ruler-color-marker-small) 9.1px, var(--ck-ruler-color-marker-small) 10px),
+		var(--ck-ruler-color-background);
+	background-size: 100px 6px, 10px 4px, 100% 100%;
+	background-repeat: repeat-x;
+	background-position: bottom left, bottom left;
+	border-top: 1px solid var(--ck-color-base-border);
+	position: relative;
+	height: var(--ck-ruler-height);
+	z-index: 1;
+
+	&.ck-disabled {
+		--ck-ruler-color-background: var(--ck-color-base-foreground);
+
+		& .ck-input-range {
+			display: none;
+		}
+	}
+
+	& .ck-input-range {
+		position: absolute;
+		left: calc( -0.5 * var( --ck-ruler-thumb-width ));
+		right: calc( -0.5 * var( --ck-ruler-thumb-width ));
+		bottom: calc( 0.5 * var( --ck-ruler-thumb-height ) );
+		-webkit-appearance: none;
+		appearance: none;
+		height: 1px;
+		pointer-events: none;
+		z-index: 0;
+
+		&::-webkit-slider-thumb {
+			border-radius: 0;
+			box-shadow: none;
+			-webkit-appearance: none;
+			pointer-events: all;
+			cursor: pointer;
+			background: transparent;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: var(--ck-ruler-thumb-height) calc(0.5 * var(--ck-ruler-thumb-width)) 0  calc(0.5 * var(--ck-ruler-thumb-width));
+			border-color: var(--ck-ruler-thumb-color) transparent transparent transparent;
+
+			&:hover {
+				--ck-ruler-thumb-color: var(--ck-ruler-thumb-color-hover);
+			}
+
+			&:active {
+				transform: scale(1.2);
+			}
+		}
+
+		/* Copy-paste of the previous rule because aggregating these selectors breaks them. */
+		&::-moz-range-thumb {
+			border-radius: 0;
+			box-shadow: none;
+			-webkit-appearance: none;
+			pointer-events: all;
+			cursor: pointer;
+			background: transparent;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: var(--ck-ruler-thumb-height) calc(0.5 * var(--ck-ruler-thumb-width)) 0  calc(0.5 * var(--ck-ruler-thumb-width));
+			border-color: var(--ck-ruler-thumb-color) transparent transparent transparent;
+
+			&:hover {
+				--ck-ruler-thumb-color: var(--ck-ruler-thumb-color-hover);
+			}
+
+			&:active {
+				transform: scale(1.2);
+			}
+		}
+
+		&.ck-ruler__slider_text-indent {
+			bottom: calc( 1.5 * var( --ck-ruler-thumb-height ) );
+
+			&::-webkit-slider-thumb {
+				width: var(--ck-ruler-thumb-width);
+				height: calc( 0.5 * var(--ck-ruler-thumb-height) );
+				border: 0;
+				background: var(--ck-ruler-thumb-color);
+			}
+
+			/* Copy-paste of the previous rule because aggregating these selectors breaks them. */
+			&::-moz-range-thumb {
+				width: var(--ck-ruler-thumb-width);
+				height: calc( 0.5 * var(--ck-ruler-thumb-height) );
+				border: 0;
+				background: var(--ck-ruler-thumb-color);
+			}
+		}
+
+		&.ck-ruler__slider_margin-left,
+		&.ck-ruler__slider_text-indent {
+			height: 0;
+			z-index: 1;
+		}
+	}
+}
