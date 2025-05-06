@@ -1,0 +1,437 @@
+/* ---- Cross-editor content styles. --------------------------------------------------------------- */
+.ck.ck-content:not(.ck-style-grid__button__preview):not(.ck-editor__nested-editable) {
+    /* Make sure all content containers have some min height to make them easier to locate. */
+    min-height: 300px;
+    /* padding: 1em 1.5em; */
+  }
+  
+  /* Make sure all content containers are distinguishable on a web page even of not focused. */
+  .ck.ck-content:not(:focus) {
+    border: 1px solid var(--ck-color-base-border);
+  }
+  
+  /* Fix for editor styles overflowing into comment reply fields */
+  .ck-comment__input .ck.ck-content {
+    min-height: unset;
+    border: 0;
+    padding: 0;
+  }
+  
+  /* Font sizes and vertical rhythm for common elements (headings, lists, paragraphs, etc.) */
+  .ck-content h1 {
+    font-size: 2.3em;
+  }
+  .ck-content h2 {
+    font-size: 1.84em;
+  }
+  .ck-content h3 {
+    font-size: 1.48em;
+  }
+  .ck-content h4 {
+    font-size: 1.22em;
+  }
+  .ck-content h5 {
+    font-size: 1.06em;
+  }
+  .ck-content h6 {
+    font-size: 1em;
+  }
+  .ck-content h1,
+  .ck-content h2,
+  .ck-content h3,
+  .ck-content h4,
+  .ck-content h5,
+  .ck-content h6 {
+    line-height: 1.2em;
+    padding-top: 0.8em;
+    margin-bottom: 0.4em;
+  }
+  .ck-content blockquote,
+  .ck-content ol,
+  .ck-content p,
+  .ck-content ul {
+    font-size: 1em;
+    line-height: 1.6em;
+    padding-top: 0.2em;
+    margin-bottom: var(--ck-spacing-large);
+  }
+  
+  .ck-content {
+    font-family: "Times New Roman", Time, serif;
+    line-height: 1.4;
+  }
+  .ck.ck-color-ui-dropdown {
+    --ck-color-grid-tile-size: 20px;
+  }
+  .ck.ck-color-ui-dropdown .ck-color-grid {
+    grid-gap: 1px;
+  }
+  .ck.ck-color-ui-dropdown .ck-color-grid .ck-button {
+    border-radius: 0;
+  }
+  .ck.ck-color-ui-dropdown .ck-color-grid__tile:hover:not(.ck-disabled),
+  .ck.ck-color-ui-dropdown .ck-color-grid__tile:focus:not(.ck-disabled) {
+    z-index: 1;
+    transform: scale(1.3);
+  }
+  
+  /* ---- Basic CSS reset ------------------------------------------------------ */
+  *, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .ck.ck-content.ck-editor__editable_inline > :first-child {
+    margin-top: 0;
+  }
+  
+  /* ---- Styles of the demo page ------------------------------------------------------ */
+  .editor-wrapper {
+    max-width: 66rem;
+    margin: 0 auto 2rem auto;
+  }
+  
+  .header-wrapper {
+    padding: 1rem 2rem;
+  }
+  
+  /* ---- Document editor demo styles ------------------------------------------------------------------- */
+  #cke5-editor-types-demo-document {
+    --ck-document-outline-indent-level-2: 1.1em;
+    --ck-document-outline-indent-level-3: 2.2em;
+    --ck-document-outline-item-active-color: var(--color-tang-6);
+    --editor-background:#e3e8ed;
+    position: relative;
+    border: 1px solid var(--ck-color-base-border);
+    border-radius: var(--ck-border-radius);
+    /* Set vertical boundaries for the document editor. */
+    max-height: 80vh;
+    /* This element is a flex container for easier rendering. */
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  
+  .cke5-editor-types-demo-document__toolbar-container {
+    /* Make sure the toolbar container is always above the editable. */
+    z-index: 2;
+    /* Create the illusion of the toolbar floating over the editable. */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+    /* Use the CKEditor CSS variables to keep the UI consistent. */
+    border-bottom: 1px solid var(--ck-color-toolbar-border);
+    position: sticky;
+    top: var(--header-height);
+  }
+  
+  /* Adjust the look of the toolbar inside of the container. */
+  .cke5-editor-types-demo-document__toolbar-container .ck-toolbar {
+    border: 0;
+    border-radius: 0;
+  }
+  
+  /* Make the editable container look like the inside of a native word processor app. */
+  .cke5-editor-types-demo-document__content-container {
+    padding: clamp(1rem, 0.85rem + 0.74vw, 1.5rem);
+    background: var(--editor-background);
+    /* Make it possible to scroll the "page" of the edited content. */
+    overflow-y: scroll;
+  }
+  
+  .cke5-editor-types-demo-document__content-container .cke5-editor-types-demo-document__content {
+    /* Set the dimensions of the "page". */
+    max-width: 21cm;
+    width: 100%;
+    min-height: 21cm;
+    /* Keep the "page" off the boundaries of the container. */
+    padding: 2cm 2.4cm;
+    border-color: transparent;
+    border-radius: var(--ck-border-radius);
+    background: white;
+    /* The "page" should cast a slight shadow (3D illusion). */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);
+    /* Center the "page". */
+    margin: 0 auto;
+  }
+  
+  .cke5-editor-types-demo-document__content-container .cke5-editor-types-demo-document__content.ck-focused {
+    border: var(--ck-focus-ring);
+  }
+  
+  #cke5-editor-types-demo-document {
+    display: grid !important;
+    grid-template-columns: 1fr 22cm;
+    grid-template-rows: auto 1fr;
+  }
+  
+  @media screen and (max-width: 1100px) {
+    .cke5-editor-types-demo-document__content-container .cke5-editor-types-demo-document__content {
+      padding: 0.5cm;
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    #cke5-editor-types-demo-document {
+      grid-template-columns: 1fr;
+    }
+  }
+  #cke5-editor-types-demo-document {
+    display: grid !important;
+    grid-template-columns: 1fr minmax(75%, 22cm);
+    grid-template-rows: auto 1fr;
+  }
+  
+  .cke5-editor-types-demo-document__toolbar-container {
+    grid-column: 1/3;
+  }
+  
+  @media screen and (max-width: 1100px) {
+    .cke5-editor-types-demo-document__content-container {
+      grid-column: 1/3;
+    }
+    .cke5-editor-types-demo-document__outline {
+      display: none;
+    }
+    .cke5-editor-types-demo-document__outline [class*=-toggle] {
+      opacity: 0.5;
+      padding: var(--ck-spacing-small);
+    }
+    .cke5-editor-types-demo-document__outline [class*=-toggle]:hover {
+      opacity: 1;
+    }
+  }
+  .cke5-editor-types-demo-document__outline {
+    background: var(--editor-background);
+    overflow-x: auto;
+    max-height: 80vh;
+  }
+  
+  #cke5-editor-types-demo-document {
+    --ck-document-outline-indent-level-2: 1.1em;
+    --ck-document-outline-indent-level-3: 2.2em;
+    --ck-document-outline-item-active-color: var(--color-tang-5, #743ccd);
+  }
+  
+  #cke5-editor-types-demo-document .ck-document-outline__item {
+    line-height: 1.1em;
+    max-width: 27ch;
+  }
+  
+  #cke5-editor-types-demo-document .ck-content .ck-widget.table-of-contents ol {
+    margin-bottom: var(--ck-spacing-tiny);
+  }
+  
+  @media screen and (min-width: 1100px) {
+    #cke5-editor-types-demo-document.outline-collapsed {
+      grid-template-columns: 35px minmax(22cm, 100%);
+    }
+    .cke5-editor-types-demo-document__wrapper.outline-collapsed .ck-document-outline {
+      display: none;
+    }
+  }
+  .cke5-editor-types-demo-document__wrappper {
+    grid-template-columns: 1fr minmax(75%, 22cm);
+  }
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+    body {
+        margin: 0 !important;
+    }
+}
+
+.main-container {
+    --ckeditor5-preview-sidebar-width: 270px;
+    font-family: 'Lato';
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-container .presence {
+    margin-bottom: 8px;
+}
+
+.ck-content {
+    font-family: 'Lato';
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.editor-container__editor-wrapper {
+    display: flex;
+    width: fit-content;
+}
+
+.editor-container_include-outline .editor-container__editor .ck.ck-editor__editable {
+    margin-left: 0;
+}
+
+.editor-container_include-annotations .editor-container__editor .ck.ck-editor__editable {
+    margin-right: 0;
+}
+
+.editor-container_inline-editor .editor-container__editor {
+    min-width: 795px;
+    max-width: 795px;
+}
+
+.editor-container__sidebar {
+    min-width: var(--ckeditor5-preview-sidebar-width);
+    max-width: var(--ckeditor5-preview-sidebar-width);
+    margin-top: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.revision-history {
+    display: none;
+}
+
+.revision-history__wrapper {
+    display: flex;
+}
+
+.revision-history__wrapper .ck.ck-editor {
+    margin: 0;
+    width: 795px;
+}
+
+.revision-history__wrapper .revision-history__sidebar {
+    border: 1px solid var(--ck-color-base-border);
+    border-left: 0;
+    width: var(--ckeditor5-preview-sidebar-width);
+    min-height: 100%;
+}
+
+.revision-history__wrapper .revision-history__sidebar .ck-revision-history-sidebar {
+    height: 100%;
+}
+
+.ck-content h3.category {
+    font-family: 'Oswald';
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    letter-spacing: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.ck-content h2.document-title {
+    font-family: 'Oswald';
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.ck-content h3.document-subtitle {
+    font-family: 'Oswald';
+    font-size: 20px;
+    color: #555;
+    margin: 0 0 1em;
+    font-weight: bold;
+    padding: 0;
+}
+
+.ck-content p.info-box {
+    --background-size: 30px;
+    --background-color: #e91e63;
+    padding: 1.2em 2em;
+    border: 1px solid var(--background-color);
+    background: linear-gradient(135deg,
+            var(--background-color) 0%,
+            var(--background-color) var(--background-size),
+            transparent var(--background-size)),
+        linear-gradient(135deg,
+            transparent calc(100% - var(--background-size)),
+            var(--background-color) calc(100% - var(--background-size)),
+            var(--background-color));
+    border-radius: 10px;
+    margin: 1.5em 2em;
+    box-shadow: 5px 5px 0 #ffe6ef;
+}
+
+.ck-content blockquote.side-quote {
+    font-family: 'Oswald';
+    font-style: normal;
+    float: right;
+    width: 35%;
+    position: relative;
+    border: 0;
+    overflow: visible;
+    z-index: 1;
+    margin-left: 1em;
+}
+
+.ck-content blockquote.side-quote::before {
+    content: '“';
+    position: absolute;
+    top: -37px;
+    left: -10px;
+    display: block;
+    font-size: 200px;
+    color: #e7e7e7;
+    z-index: -1;
+    line-height: 1;
+}
+
+.ck-content blockquote.side-quote p {
+    font-size: 2em;
+    line-height: 1;
+}
+
+.ck-content blockquote.side-quote p:last-child:not(:first-child) {
+    font-size: 1.3em;
+    text-align: right;
+    color: #555;
+}
+
+.ck-content span.marker {
+    background: yellow;
+}
+
+.ck-content span.spoiler {
+    background: #000;
+    color: #000;
+}
+
+.ck-content span.spoiler:hover {
+    background: #000;
+    color: #fff;
+}
+
+.ck-content pre.fancy-code {
+    border: 0;
+    margin-left: 2em;
+    margin-right: 2em;
+    border-radius: 10px;
+}
+
+.ck-content pre.fancy-code::before {
+    content: '';
+    display: block;
+    height: 13px;
+    background: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NCAxMyI+CiAgPGNpcmNsZSBjeD0iNi41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiNGMzZCNUMiLz4KICA8Y2lyY2xlIGN4PSIyNi41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiNGOUJFNEQiLz4KICA8Y2lyY2xlIGN4PSI0Ny41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiM1NkM0NTMiLz4KPC9zdmc+Cg==);
+    margin-bottom: 8px;
+    background-repeat: no-repeat;
+}
+
+.ck-content pre.fancy-code-dark {
+    background: #272822;
+    color: #fff;
+    box-shadow: 5px 5px 0 #0000001f;
+}
+
+.ck-content pre.fancy-code-bright {
+    background: #dddfe0;
+    color: #000;
+    box-shadow: 5px 5px 0 #b3b3b3;
+} */

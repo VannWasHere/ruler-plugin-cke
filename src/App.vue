@@ -26,6 +26,11 @@
 
 import { computed, ref, onMounted, watchEffect, useTemplateRef } from "vue";
 import { Ckeditor } from "@ckeditor/ckeditor5-vue";
+import "../public/ckeditor5.css";
+import "../public/ckeditor5-premium.css";
+import "../public/document-style.css"
+import "../public/styledocs.css"
+import "../public/my_custom_ck_editor.css"
 
 import {
   ClassicEditor,
@@ -265,12 +270,11 @@ const config = computed(() => {
     ],
     exportPdf: {
       stylesheets: [
-        /* This path should point to the content stylesheets on your assets server. */
-        /* See: https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-pdf.html */
-        "./export-style.css",
-        /* Export PDF needs access to stylesheets that style the content. */
-        "https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.css",
-        "https://cdn.ckeditor.com/ckeditor5-premium-features/45.0.0/ckeditor5-premium-features.css",
+        "../public/fonts.css",
+        "../public/my_custom_ck_editor.css",
+        "../public/ckeditor5-premium.css",
+        '../public/style_document.css',
+        "../public/ckeditor5.css",
       ],
       fileName: "export-pdf-demo.pdf",
       converterOptions: {
@@ -514,3 +518,10 @@ function onEditorReady(editor) {
   );
 }
 </script>
+
+<style>
+.editor-container{
+  margin-top: 120px;
+}
+</style>
+
