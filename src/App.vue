@@ -278,13 +278,16 @@ const config = computed(() => {
       ],
       fileName: "export-pdf-demo.pdf",
       converterOptions: {
-        format: "Tabloid",
-        margin_top: "20mm",
-        margin_bottom: "20mm",
-        margin_right: "24mm",
-        margin_left: "24mm",
-        page_orientation: "portrait",
-      },
+        format: 'A4',
+        margin_top: '20mm',
+        margin_bottom: '20mm',
+        margin_right: '12mm',
+        margin_left: '12mm',
+        page_orientation: 'portrait',
+        header_html: undefined,
+        footer_html : '<p>1</p>',
+        header_and_footer_css : 'p {color: #333; text-align: right; font-size: 12px; padding-bottom: 50px; padding-right: 50px; } '
+      }
     },
     exportWord: {
       stylesheets: [
