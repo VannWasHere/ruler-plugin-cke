@@ -526,5 +526,14 @@ function onEditorReady(editor) {
 .editor-container{
   margin-top: 120px;
 }
+
+.ck-content {
+  padding: 20px;
+}
+
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 </style>
 
