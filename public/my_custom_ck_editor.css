@@ -5,6 +5,11 @@
     /* font-family: "Frutiger 45 Light"; */
 }
 
+/* Fix for Chrome table pagination issue */
+.ck-content figure.table:not(.layout-table) {
+    @media print { display: block !important; }
+}
+
 .type-heading {
     list-style-type:none;
 }

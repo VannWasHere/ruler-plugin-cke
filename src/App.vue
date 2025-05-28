@@ -548,10 +548,5 @@ function onEditorReady(editor) {
   padding-left: 40px;
   padding-right: 40px;
 }
-
-/* Fix for Chrome table pagination issue */
-.ck-content figure.table:not(.layout-table) {
-  @media print { display: block !important; }
-}
 </style>
 
