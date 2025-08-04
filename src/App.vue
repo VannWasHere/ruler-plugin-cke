@@ -273,12 +273,16 @@ const config = computed(() => {
       Ruler, // Add Ruler plugin
     ],
     exportPdf: {
+      // Change this to your PDF converter service URL
+      converterUrl: 'http://docx-converter-ckeditor.apps.lab.ocp.lan/v2/convert/html-docx',
+      // Alternative: Use a different PDF service
+      // converterUrl: 'https://api.pdfcrowd.com/convert/html-to-pdf/',
       stylesheets: [
-        "../public/fonts.css",
-        "../public/my_custom_ck_editor.css",
-        "../public/ckeditor5-premium.css",
-        '../public/style_document.css',
-        "../public/ckeditor5.css",
+        "./fonts.css",
+        "./my_custom_ck_editor.css",
+        "./ckeditor5-premium.css",
+        './style_document.css',
+        "./ckeditor5.css",
       ],
       fileName: "export-pdf-demo.pdf",
       converterOptions: {
@@ -304,6 +308,10 @@ const config = computed(() => {
       },
     },
     exportWord: {
+      // Change this to your DOCX converter service URL
+      converterUrl: 'http://pdf-converter-ckeditor.apps.lab.ocp.lan/v1/convert',
+      // Alternative: Use a different DOCX service
+      // converterUrl: 'https://api.mammoth.com/convert/html-to-docx/',
       stylesheets: [
         /* This path should point to the content stylesheets on your assets server. */
         /* See: https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-word.html */
